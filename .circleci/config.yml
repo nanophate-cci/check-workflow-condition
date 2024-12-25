@@ -1,0 +1,50 @@
+version: 2.1
+
+parameters:
+  action:
+    type: enum
+    default: run
+    enum: ["run", "check"]
+
+jobs:
+  check:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run: echo "check"
+      - run: |
+          echo "Running check..."
+          # Assuming the tests run here and pass
+          # Make an API call to trigger the 'run' workflow
+          curl \
+            -X POST \
+            -H "Circle-Token: ${CIRCLECI_PAT}" \
+            -d '{
+                  "branch": "<< pipeline.git.branch >>",
+                  "parameters": {
+                    "action": "run"
+                  }
+                }' \
+            https://circleci.com/api/v2/project/gh/nanophate-cci/check-workflow-condition/pipeline
+
+  run:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run: echo "run"
+
+
+workflows:
+  version: 2
+    run_workflow:
+        jobs:
+            - run
+        when:
+            equal: [ run, << pipeline.parameters.action >> ]
+    check_workflow:
+        jobs:
+            - check
+        when:
+            equal: [ check, << pipeline.parameters.action >> ]
