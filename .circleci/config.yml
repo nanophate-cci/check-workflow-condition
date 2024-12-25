@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run: echo "check"
       - run: |
-          echo "Running check..."
+          echo "Running check....."
           # Assuming the tests run here and pass
           # Make an API call to trigger the 'run' workflow
           curl \
