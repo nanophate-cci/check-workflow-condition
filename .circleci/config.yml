@@ -38,13 +38,13 @@ jobs:
 
 workflows:
   version: 2
-    run_workflow:
-        jobs:
-            - run
-        when:
-            equal: [ run, << pipeline.parameters.action >> ]
-    check_workflow:
-        jobs:
-            - check
-        when:
-            equal: [ check, << pipeline.parameters.action >> ]
+  run_workflow:
+      jobs:
+          - run
+      when:
+          equal: [ run, << pipeline.parameters.action >> ]
+  check_workflow:
+      jobs:
+          - check
+      when:
+          equal: [ check, << pipeline.parameters.action >> ]
