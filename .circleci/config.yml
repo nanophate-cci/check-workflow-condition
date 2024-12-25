@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   action:
     type: enum
-    default: check
+    default: run
     enum: ["run", "check"]
 
 jobs:
