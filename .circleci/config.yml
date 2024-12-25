@@ -13,20 +13,6 @@ jobs:
     steps:
       - checkout
       - run: echo "check"
-      - run: |
-          echo "Running check....."
-          # Assuming the tests run here and pass
-          # Make an API call to trigger the 'run' workflow
-          curl \
-            -X POST \
-            -H "Circle-Token: ${CIRCLECI_PAT}" \
-            -d '{
-                  "branch": "<< pipeline.git.branch >>",
-                  "parameters": {
-                    "action": run
-                  }
-                }' \
-            https://circleci.com/api/v2/project/gh/nanophate-cci/check-workflow-condition/pipeline
 
   run:
     docker:
