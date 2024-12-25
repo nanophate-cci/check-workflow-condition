@@ -23,7 +23,7 @@ jobs:
             -d '{
                   "branch": "<< pipeline.git.branch >>",
                   "parameters": {
-                    "action": "run"
+                    "action": run
                   }
                 }' \
             https://circleci.com/api/v2/project/gh/nanophate-cci/check-workflow-condition/pipeline
