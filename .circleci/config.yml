@@ -2,9 +2,8 @@ version: 2.1
 
 parameters:
   action:
-    type: enum
-    default: run
-    enum: ["run", "check"]
+    type: string
+    default: check
 
 jobs:
   check:
