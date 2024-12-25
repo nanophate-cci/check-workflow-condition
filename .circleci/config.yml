@@ -4,7 +4,7 @@ parameters:
   action:
     type: enum
     enum: [check, run]
-    default: check
+    default: run
 
 jobs:
   check:
